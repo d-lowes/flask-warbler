@@ -27,7 +27,7 @@ cd flask-warbler
 3. Create and activate a virtual environment (optional but recommended):
 
 ```bash
-python -m venv venv
+python3 -m venv venv
 source venv/bin/activate  # for Linux/Mac
 venv\Scripts\activate  # for Windows
 ```
@@ -35,22 +35,32 @@ venv\Scripts\activate  # for Windows
 4. Install the required dependencies:
 
 ```bash
-pip install -r requirements.txt
+(venv) $ pip install -r requirements.txt
 ```
 
 5. Set up the database:
 
 ```bash
-flask db upgrade
+(venv) $ psql
+=# CREATE DATABASE warbler;
+=# (control-d)
+(venv) $ python seed.py
+```
+7. Create an .env file to hold configuration:
+
+```.env
+SECRET_KEY="whatever you desire"
+DATABASE_URL=postgresql:///warbler
 ```
 
-6. Start the Flask development server:
+
+6. Start the Flask development server (sometimes default port 5000 is occupied for Mac users, depending on your machine):
 
 ```bash
-flask run
+(venv) $ flask run -p 5001
 ```
 
-7. Open your web browser and navigate to http://localhost:5000 to access Flask Warbler.
+7. Open your web browser and navigate to http://localhost:5001 to access Flask Warbler.
 
 ## Configuration
 Flask Warbler uses a configuration file to manage settings. By default, the development configuration is used. However, you can specify a different configuration by setting the FLASK_ENV environment variable. Available options are:
