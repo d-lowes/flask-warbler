@@ -10,7 +10,6 @@ from forms import (UserAddForm, LoginForm, MessageForm,
                    CSRFProtectForm,
                    EditProfileForm)
 from models import (db, connect_db, User, Message,
-                    LikedMessage,
                     DEFAULT_HEADER_IMAGE_URL,
                     DEFAULT_IMAGE_URL)
 
@@ -81,10 +80,10 @@ def signup():
 
     do_logout()
 
+    form = UserAddForm()
+
     if g.user:
         return redirect("/")
-
-    form = UserAddForm()
 
     if form.validate_on_submit():
         try:
@@ -116,9 +115,6 @@ def login():
 
     form = LoginForm()
 
-    if g.user:
-        return redirect("/")
-
     if form.validate_on_submit():
         user = User.authenticate(
             form.username.data,
@@ -141,15 +137,14 @@ def logout():
 
     form = g.csrf_form
 
-    if not g.user:
+    if not form.validate_on_submit() or not g.user:
+        flash("Access unauthorized.", "danger")
         return redirect("/")
 
-    if form.validate_on_submit():
-        do_logout()
+    do_logout()
 
-        flash("Successfully logged out", "success")
-
-        return redirect("/login")
+    flash("You have successfully logged out.", 'success')
+    return redirect("/login")
 
 
 ##############################################################################
