@@ -1,4 +1,3 @@
 1. Encountered a bug where our CSRF form tag was not being injected into the base html, and thus was not being hidden using the hidden tag.
     This prevented the logout from functioning properly.
 2. Added missing CSRF_protection in all routes (add 'or not g.csrf_form.submit_on_validation())
-3. Forgot parens!
