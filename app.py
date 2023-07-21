@@ -1,4 +1,5 @@
 import os
+
 from dotenv import load_dotenv
 
 from flask import Flask, render_template, request, flash, redirect, session, g
@@ -17,9 +18,14 @@ load_dotenv()
 
 CURR_USER_KEY = "curr_user"
 
-app = Flask(__name__)
+database_url = os.environ['DATABASE_URL']
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+# fix incorrect database URIs currently returned by Heroku's pg setup
+database_url = database_url.replace('postgres://', 'postgresql://')
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = database_url
+
 app.config['SQLALCHEMY_ECHO'] = False
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = True
 app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
