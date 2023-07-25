@@ -2,6 +2,11 @@
 
 Flask Warbler is a simple Twitter clone built with Flask, a popular Python web framework. It allows users to create accounts, post messages (called "warbles"), follow other users, and view a feed of warbles from the users they follow.
 
+View the live demo [here](https://warbler-twitter-clone-by-d-lowes.onrender.com/)
+**Sample login credentials**
+**username:** tuckerdiane
+**password:** password
+
 ## Features
 - User registration and login: Users can create new accounts and log in with their credentials.
 - Warble creation: Logged-in users can post new warbles.
