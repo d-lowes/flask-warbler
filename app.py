@@ -18,22 +18,25 @@ load_dotenv()
 
 CURR_USER_KEY = "curr_user"
 
-database_url = os.environ['DATABASE_URL']
+app = Flask(__name__)
+csrf = CSRFProtect(app)
+csrf.init_app(app)
+
+
 
 # fix incorrect database URIs currently returned by Heroku's pg setup
+database_url = os.environ['DATABASE_URL']
 database_url = database_url.replace('postgres://', 'postgresql://')
-
-app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = database_url
 app.config['SQLALCHEMY_ECHO'] = False
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = True
 app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
+
 toolbar = DebugToolbarExtension(app)
+
 
 # Disable CSRF for live demo, comment this out to enable
 app.config['WTF_CSRF_ENABLED'] = False
-csrf = CSRFProtect(app)
-csrf.init_app(app)
 
 connect_db(app)
 
