@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from flask import Flask, render_template, request, flash, redirect, session, g
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
+from flask_wtf.csrf import CSRFProtect
 
 from forms import (UserAddForm, LoginForm, MessageForm,
                    CSRFProtectForm,
@@ -31,6 +32,8 @@ toolbar = DebugToolbarExtension(app)
 
 # Disable CSRF for live demo, comment this out to enable
 app.config['WTF_CSRF_ENABLED'] = False
+csrf = CSRFProtect(app)
+csrf.init_app(app)
 
 connect_db(app)
 
