@@ -22,8 +22,6 @@ app = Flask(__name__)
 csrf = CSRFProtect(app)
 csrf.init_app(app)
 
-
-
 # fix incorrect database URIs currently returned by Heroku's pg setup
 database_url = os.environ['DATABASE_URL']
 database_url = database_url.replace('postgres://', 'postgresql://')

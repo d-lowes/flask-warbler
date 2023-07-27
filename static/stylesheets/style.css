@@ -142,6 +142,87 @@ nav form.navbar-form {
   background-color: #fff;
 }
 
+@media (max-width: 768px) {
+  .navbar {
+    height: auto;
+    margin-bottom: 1rem;
+  }
+
+  .navbar-brand > img {
+    width: 18px;
+  }
+
+  .navbar-brand > span {
+    display: none;
+  }
+
+  .nav > li > a > img {
+    width: 28px;
+  }
+
+  ul.nav.navbar-nav {
+    flex-direction: column;
+  }
+
+  ul.nav.navbar-nav li {
+    margin: 0.5rem 0;
+  }
+
+  nav form.navbar-form {
+    display: none;
+  }
+
+  #search.form-control {
+    font-size: 11px;
+    padding-right: 24px;
+  }
+
+  #search.form-control + .btn {
+    top: 0;
+    bottom: 0;
+  }
+
+  .onboarding > .navbar {
+    background-image: none;
+  }
+
+  .onboarding .navbar-brand {
+    margin: 0 auto;
+  }
+
+  .onboarding .navbar-brand img {
+    width: 32px;
+    margin-bottom: 0;
+  }
+
+  .onboarding .navbar-brand span {
+    display: block;
+  }
+
+  .onboarding .nav.navbar-nav.navbar-right {
+    position: static;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .onboarding .nav.navbar-nav.navbar-right li {
+    margin: 0;
+  }
+}
+
+.onboarding > .navbar a {
+  color: #fff;
+}
+
+.onboarding > .navbar form.navbar-form {
+  display: none;
+}
+
+.onboarding {
+  background-color: #fff;
+}
+
 @media (max-width: 468px) {
   nav form.navbar-form {
     display: none;
